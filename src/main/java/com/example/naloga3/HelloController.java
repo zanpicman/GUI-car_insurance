@@ -142,7 +142,7 @@ public class HelloController implements Initializable {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            status.setText("Status: Brisanje obrazca");
+            status.setText("Brisanje obrazca");
             znamka.setText("");
             oznaka.setText("");
             barva.setText("");

@@ -12,6 +12,7 @@
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -32,19 +33,20 @@
          <top>
             <MenuBar BorderPane.alignment="CENTER">
               <menus>
-                <Menu mnemonicParsing="false" text="File">
+                <Menu mnemonicParsing="false" text="Datoteka">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
+                    <MenuItem mnemonicParsing="false" onAction="#shraniCB" text="Shrani">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
+                <Menu mnemonicParsing="false" text="Uredi">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
+                    <MenuItem mnemonicParsing="false" onAction="#pobrisiCB" text="Pobriši obrazec">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="C" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
                   </items>
                 </Menu>
               </menus>
@@ -70,7 +72,7 @@
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="186.0" minWidth="138.0" prefWidth="168.0" />
                   <ColumnConstraints hgrow="SOMETIMES" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="141.0" minWidth="83.0" prefWidth="124.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="154.0" prefWidth="169.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="184.0" minWidth="154.0" prefWidth="169.0" />
               </columnConstraints>
               <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -146,9 +148,9 @@
             <GridPane styleClass="grid-pane" GridPane.rowIndex="1">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="183.0" minWidth="123.0" prefWidth="172.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="238.0" minWidth="146.0" prefWidth="173.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="186.0" minWidth="146.0" prefWidth="173.0" />
                   <ColumnConstraints hgrow="SOMETIMES" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.0" minWidth="89.0" prefWidth="109.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="141.0" minWidth="89.0" prefWidth="109.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="184.0" minWidth="159.0" prefWidth="170.0" />
               </columnConstraints>
               <rowConstraints>
@@ -344,6 +346,9 @@
          <padding>
             <Insets bottom="5.0" left="10.0" />
          </padding>
+         <BorderPane.margin>
+            <Insets bottom="5.0" />
+         </BorderPane.margin>
       </Label>
    </bottom>
 </BorderPane>
