@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
@@ -70,9 +71,9 @@ public class HelloController implements Initializable {
 
 
     public void shraniCB(ActionEvent actionEvent) {
-        if (znamka.getText().equals("")||oznaka.getText().equals("")||barva.getText().equals("")||
-        ime.getText().equals("")||priimek.getText().equals("")||naslov.getText().equals("")||
-        kraj.getText().equals("")||postna.getText().equals("")||registrska.getText().equals("")||krajPrve.getText().equals("")) {
+        if (znamka.getText().equals("") || oznaka.getText().equals("") || barva.getText().equals("") ||
+                ime.getText().equals("") || priimek.getText().equals("") || naslov.getText().equals("") ||
+                kraj.getText().equals("") || postna.getText().equals("") || registrska.getText().equals("") || krajPrve.getText().equals("")) {
             System.out.println(" prazna polja");
             status.setText("Prazna polja");
 
@@ -82,68 +83,76 @@ public class HelloController implements Initializable {
             alert.setContentText("Nekatera polja so prazna, prosim izpolnite vse!");
             alert.showAndWait();
 
+        } else {
+
+            try {
+                BufferedWriter writer = new BufferedWriter(new FileWriter("baza.txt", true));
+                writer.write("Podatki o vozilu" + "\n");
+                writer.write("Znamka: " + znamka.getText() + "\n");
+                writer.write("Moc: " + moc.getValue() + "\n");
+                writer.write("Oznaka: " + oznaka.getText() + "\n");
+                writer.write("Prostornina: " + prostornina.getValue() + "\n");
+                writer.write("Gorivo: " + gorivo.getValue() + "\n");
+                writer.write("Barva: " + barva.getText() + "\n");
+                writer.write("Število sedežev: " + sedezi.getValue() + "\n");
+
+                writer.write("Zavarovanec" + "\n");
+                writer.write("Ime: " + ime.getText() + "\n");
+                writer.write("Priimek: " + priimek.getText() + "\n");
+                writer.write("Naslov: " + naslov.getText() + "\n");
+                writer.write("Kraj: " + kraj.getText() + "\n");
+                writer.write("Poštna številka: " + postna.getText() + "\n");
+                writer.write("Mladi voznik: " + mladi.isSelected() + "\n");
+                writer.write("Rojstni datum: " + rojstvo.getValue() + "\n");
+
+                writer.write("Zavarovanje" + "\n");
+                writer.write("Zavarovanje AO+: " + zavarovanje.isSelected() + "\n");
+                writer.write("Kasko: " + kasko.getValue() + "\n");
+                writer.write("Dodatna zavarovanja: ");
+                if (zaStekla.isSelected()) writer.write("Za stekla,");
+                if (naParkiscu.isSelected()) writer.write("Na parkirišču,");
+                if (zaPotnike.isSelected()) writer.write("Za potnike,");
+                if (protiToci.isSelected()) writer.write("Proti toči,");
+                if (protiKraji.isSelected()) writer.write("Proti kraji,");
+                if (zaGume.isSelected()) writer.write("Za gume,");
+                if (zaTretjo.isSelected()) writer.write("Za tretjo osebo,");
+
+                writer.write("Registracija" + "\n");
+                writer.write("Registrska označba: " + registrska.getText() + "\n");
+                writer.write("Datum prve registracije: " + datume.getValue() + "\n");
+                writer.write("Kraj prve registracije: " + krajPrve.getText() + "\n");
+
+                writer.write("\n");
+
+
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
-        else {
-
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("baza.txt",true));
-            writer.write("Podatki o vozilu" + "\n");
-            writer.write("Znamka: " + znamka.getText() + "\n");
-            writer.write("Moc: " + moc.getValue() + "\n");
-            writer.write("Oznaka: " + oznaka.getText() + "\n");
-            writer.write("Prostornina: " + prostornina.getValue() + "\n");
-            writer.write("Gorivo: " + gorivo.getValue() + "\n");
-            writer.write("Barva: " + barva.getText() + "\n");
-            writer.write("Število sedežev: " + sedezi.getValue() + "\n");
-
-            writer.write("Zavarovanec" + "\n");
-            writer.write("Ime: " + ime.getText() + "\n");
-            writer.write("Priimek: " + priimek.getText() + "\n");
-            writer.write("Naslov: " + naslov.getText() + "\n");
-            writer.write("Kraj: " + kraj.getText() + "\n");
-            writer.write("Poštna številka: " + postna.getText() + "\n");
-            writer.write("Mladi voznik: " + mladi.isSelected() + "\n");
-            writer.write("Rojstni datum: " + rojstvo.getValue() + "\n");
-
-            writer.write("Zavarovanje" + "\n");
-            writer.write("Zavarovanje AO+: " + zavarovanje.isSelected() + "\n");
-            writer.write("Kasko: " + kasko.getValue() + "\n");
-            writer.write("Dodatna zavarovanja: ");
-            if (zaStekla.isSelected())  writer.write("Za stekla,");
-            if (naParkiscu.isSelected())  writer.write("Na parkirišču,");
-            if (zaPotnike.isSelected())  writer.write("Za potnike,");
-            if (protiToci.isSelected())  writer.write("Proti toči,");
-            if (protiKraji.isSelected())  writer.write("Proti kraji,");
-            if (zaGume.isSelected())  writer.write("Za gume,");
-            if (zaTretjo.isSelected())  writer.write("Za tretjo osebo,");
-
-            writer.write("Registracija" + "\n");
-            writer.write("Registrska označba: " + registrska.getText() + "\n");
-            writer.write("Datum prve registracije: " + datume.getValue()+ "\n");
-            writer.write("Kraj prve registracije: " + krajPrve.getText() + "\n");
-
-            writer.write("\n");
-
-
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }}
+    }
 
     public void pobrisiCB(ActionEvent actionEvent) {
-        status.setText("Status: Brisanje obrazca");
-        znamka.setText("");
-        oznaka.setText("");
-        barva.setText("");
-        ime.setText("");
-        naslov.setText("");
-        postna.setText("");
-        priimek.setText("");
-        kraj.setText("");
-        registrska.setText("");
-        krajPrve.setText("");
-        datume.
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Brisanje obrazca");
+        alert.setHeaderText("Ali ste prepričani, da želite ponastaviti obrazec?");
+        alert.setContentText("Ta akcija je končna.");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            status.setText("Status: Brisanje obrazca");
+            znamka.setText("");
+            oznaka.setText("");
+            barva.setText("");
+            ime.setText("");
+            naslov.setText("");
+            postna.setText("");
+            priimek.setText("");
+            kraj.setText("");
+            registrska.setText("");
+            krajPrve.setText("");
+        }
     }
 }
