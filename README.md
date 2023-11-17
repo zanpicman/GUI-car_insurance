@@ -5,7 +5,7 @@ For this one, I had to fix this GUI for a car insurance company.
 
 
 
-This is the final result of my work, after I cleaned up the GUI and made it a better user experience.
+This is the final result of my work, after I cleaned up the GUI and made it a better user experience. The app also saves the structured input into a text file.
 
 
 ![image](https://github.com/zanpicman/GUI-car_insurance/assets/96843213/1e527cbe-47f9-4465-9d89-5e1f79dfa60d)
